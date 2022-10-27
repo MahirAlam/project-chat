@@ -3,7 +3,7 @@ import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { BiSearch, BiSearchAlt } from "react-icons/bi";
 import { BsCheckLg } from "react-icons/bs";
@@ -23,7 +23,7 @@ function SideBar() {
 
   const chatsRef = collection(db, "chats");
   const Q = query(chatsRef, where("users", "array-contains", user.email));
-  const [chatsSnapshot] = useCollectionData(Q);
+  const [chatsDocuments] = useCollection(Q);
 
   useEffect(() => {
     const handleRecEmailChange = async () => {
@@ -37,15 +37,13 @@ function SideBar() {
         return;
       }
 
-      const userExists = chatsSnapshot
-        ?.map((chat) => chat.users.includes(recEmail))
+      const userExists = chatsDocuments?.docs
+        .map((chat) => chat.data().users.includes(recEmail))
         .includes(true);
-
       if (userExists) {
         setAllMessage({ message: "Already in your chat list!", about: false });
         return;
       }
-
       const Q = query(collection(db, "users"), where("email", "==", recEmail));
       const AllRelatedUsers = await getDocs(Q);
       if (AllRelatedUsers?.docs.length !== 1) {
@@ -62,10 +60,10 @@ function SideBar() {
     if (recEmail) {
       handleRecEmailChange();
     }
-  }, [recEmail, chatsSnapshot, user]);
+  }, [recEmail, user, chatsDocuments]);
   return (
     <>
-      <header className="shadow-lg right-0 z-50 text-sm h-16 fixed left-0 md:right-[70%] lg:right-[75%] p-2 flex items-center justify-between flex-row">
+      <header className="shadow-md right-0 z-50 text-sm h-16 fixed left-0 md:right-[70%] lg:right-[75%] p-2 flex items-center justify-between flex-row">
         <div className="">
           <span className="inline-flex items-center self-start font-sans text-xl font-semibold gap-x-2 dark:text-white/95">
             <Image
@@ -179,7 +177,7 @@ function SideBar() {
                         allMessage?.message && !allMessage?.about
                           ? "block"
                           : "hidden"
-                      } flex items-center mx-3 mb-2 bg-red-50 border border-red-200 text-sm text-red-600 rounded-md p-4`}
+                      } flex items-center mx-3 mb-2 bg-red-50 dark:bg-red-100 border dark:border-red-300/80 border-red-200 text-sm text-red-600 rounded-md p-4`}
                       role="alert"
                     >
                       <TiTimes className="h-6 w-6 mr-2 rounded-full text-white bg-red-600" />
@@ -190,7 +188,7 @@ function SideBar() {
                     <div
                       className={`${
                         allMessage?.about ? "block" : "hidden"
-                      } flex items-center mx-3 mb-2 bg-green-50 border border-green-200 text-sm text-green-600 rounded-md p-4`}
+                      } flex items-center mx-3 mb-2 bg-green-50 dark:bg-green-100 border dark:border-green-300/80 border-green-200 text-sm text-green-600 rounded-md p-4`}
                       role="alert"
                     >
                       <BsCheckLg className="h-6 w-6 mr-2 p-1 rounded-full text-white bg-green-600" />
@@ -252,12 +250,16 @@ function SideBar() {
         </div>
       </header>
       <div className="flex flex-col before:mt-16 bg-transparent before:content-[' '] h-full overflow-auto w-full p-3 space-y-2 z-10 left-0">
-        {chatsSnapshot?.map((chat) => {
-          const chatUser = chat.users.filter(
-            (User: string) => User !== user.email
-          );
+        {chatsDocuments?.docs.map((chat) => {
+          const chatUser = chat
+            .data()
+            .users.filter((User: string) => User !== user.email);
           return (
-            <SingleSideBarView key={chatUser[0]} userEmail={chatUser[0]} />
+            <SingleSideBarView
+              key={chatUser[0]}
+              id={chat.id}
+              userEmail={chatUser[0]}
+            />
           );
         })}
       </div>

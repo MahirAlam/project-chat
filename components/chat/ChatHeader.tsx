@@ -1,8 +1,15 @@
+import { doc } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
+import { useDocumentData } from "react-firebase-hooks/firestore";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoIosArrowBack } from "react-icons/io";
-function ChatHeader() {
+import { db } from "../../firebase";
+function ChatHeader({ userId }: { userId: string }) {
+  const [value, loading, error, userInfoSnapShort] = useDocumentData(
+    doc(db, "users", userId)
+  );
+
   return (
     <>
       <header className="bg-gray-100 dark:bg-gray-900 shadow-md fixed text-sm py-3 h-16 flex left-0 md:left-[calc(30%)] lg:left-[calc(25%)] right-0 top-0 items-center justify-between px-3 flex-row">
@@ -15,14 +22,14 @@ function ChatHeader() {
           <div className="relative h-[2.875rem] w-[2.875rem]">
             <Image
               className="inline-block flex-shrink-0 rounded-full"
-              src="/user3.jpg"
+              src={userInfoSnapShort?.data().photoURL}
               layout="fill"
               alt="user avatar"
             />
           </div>
           <div className="ml-3">
             <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-200">
-              Sofiul Alam
+              {userInfoSnapShort?.data().name}
             </h3>
             <p className="text-sm -mt-1 font-medium">
               <span className="w-2 h-2 inline-block ml-1 bg-green-500 rounded-full"></span>{" "}

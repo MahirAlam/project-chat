@@ -4,12 +4,18 @@ import Link from "next/link";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { db } from "../../firebase";
 
-const SingleSideBarView = ({ userEmail }: { userEmail: string }) => {
+const SingleSideBarView = ({
+  id,
+  userEmail,
+}: {
+  id: string;
+  userEmail: string;
+}) => {
   const Q = query(collection(db, "users"), where("email", "==", userEmail));
   const [user] = useCollection(Q);
 
   return (
-    <Link href={`/chat/${user?.docs[0].id}`}>
+    <Link href={`/chat/${user?.docs[0].id}/${id}`}>
       <button
         type="button"
         className="items-center flex-shrink-0 block w-full p-2 space-x-2 font-medium text-left rounded-lg group md:bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 bg-transparent dark:hover:bg-gray-800/40 hover:bg-gray-300/40"
