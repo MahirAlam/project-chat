@@ -1,6 +1,9 @@
-import Link from "next/link";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { TiTimes } from "react-icons/ti";
+import { auth } from "../firebase";
 
 function LoginForm() {
+  const [signWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
   return (
     <main
       id="content"
@@ -21,6 +24,7 @@ function LoginForm() {
           <div className="mt-5">
             <button
               type="button"
+              onClick={() => signWithGoogle()}
               className="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
             >
               <svg
@@ -155,14 +159,34 @@ function LoginForm() {
                     </label>
                   </div>
                 </div>
-                <Link href="/chats">
-                  <button
-                    type="submit"
-                    className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
-                  >
-                    Sign in
-                  </button>
-                </Link>
+                <div
+                  className={`${
+                    error ? "block" : "hidden"
+                  } bg-red-50 border border-red-200 rounded-md p-4`}
+                  role="alert"
+                >
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <TiTimes className="h-6 w-6 rounded-full text-white bg-red-500" />
+                    </div>
+                    <div className="ml-3">
+                      <div className="text-sm tracking-wide text-red-800 font-semibold">
+                        {error?.message
+                          .split("(")[1]
+                          .slice(5, error?.message.split("(")[1].length - 2)
+                          .replaceAll("-", " ")
+                          .toLocaleUpperCase()}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  disabled
+                  className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
+                >
+                  Sign in
+                </button>
               </div>
             </form>
           </div>

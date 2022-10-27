@@ -1,13 +1,12 @@
-import SideBarHeader from "../components/sidebar/SideBarHeader";
-import SideBarView from "../components/sidebar/SideBarView";
-export default function Home() {
+import SideBar from "../components/SideBar";
+
+function Home() {
   return (
     <div className="flex flex-row w-full h-screen">
-      <div className="w-full bg-slate-100 dark:bg-slate-800/70 shadow-xl md:w-[calc(30%+1px)] lg:w-[calc(25%)]">
-        <SideBarHeader />
-        <SideBarView />
+      <div className="w-full border-r dark:border-slate-800 border-slate-200 bg-slate-100 dark:bg-slate-900 shadow-xl md:w-[calc(30%+1px)] lg:w-[calc(25%)]">
+        <SideBar />
       </div>
-      <div className="w-full dark:bg-slate-800/90 justify-center flex-col items-center md:w-[calc(70%+1px)] lg:w-[calc(75%+1px)] md:flex hidden dark:bg-slate-800">
+      <div className="w-full bg-slate-100 dark:bg-slate-900 justify-center flex-col items-center md:w-[calc(70%+1px)] lg:w-[calc(75%+1px)] md:flex hidden">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="w-2/4 h-2/4"
@@ -256,3 +255,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home;

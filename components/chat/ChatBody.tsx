@@ -1,6 +1,6 @@
 function ChatBody() {
   return (
-    <div className="flex pb-16 flex-col before:mt-16 before:content-[' '] h-full overflow-auto w-full p-3 md:dark:bg-gradient-to-b dark:to-slate-700 dark:from-slate-900 space-y-2 bg-transparent z-10 left-0">
+    <div className="flex pb-16 flex-col before:mt-16 before:content-[' '] h-full overflow-auto w-full p-3 space-y-2 bg-transparent z-10 left-0">
       <div className="flex flex-col bg-gray-600 text-slate-200 rounded p-3 max-w-[70%] w-max h-auto">
         <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing Lorem ipsum dolor

@@ -5,9 +5,9 @@ import { IoIosArrowBack } from "react-icons/io";
 function ChatHeader() {
   return (
     <>
-      <header className="bg-slate-100 shadow-md fixed text-sm py-3 h-16 flex left-0 md:left-[calc(30%+1px)] lg:left-[calc(25%+1px)] right-0 top-0 items-center justify-between px-3 flex-row dark:bg-slate-900">
+      <header className="bg-gray-100 dark:bg-gray-900 shadow-md fixed text-sm py-3 h-16 flex left-0 md:left-[calc(30%)] lg:left-[calc(25%)] right-0 top-0 items-center justify-between px-3 flex-row">
         <div className="flex items-center">
-          <Link href={"/chats"}>
+          <Link href={"/"}>
             <button className="flex md:hidden hover:opacity-80 items-center justify-center -ml-1 focus-visible:border-blue-500 focus-visible:border-2 focus-visible:outline-none h-9 w-9 mr-2 bg-transparent rounded-full overflow-hidden">
               <IoIosArrowBack className="h-8 w-8 fill-slate-800  -ml-1 dark:fill-slate-300" />
             </button>
