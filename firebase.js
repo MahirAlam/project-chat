@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -12,10 +13,11 @@ const firebaseConfig = {
   storageBucket: "chat-app-free.appspot.com",
   messagingSenderId: "791497133152",
   appId: "1:791497133152:web:f304d694692f39c9688705",
-  measurementId: "G-1VS1EHS447"
+  measurementId: "G-1VS1EHS447",
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const App = initializeApp(firebaseConfig);
+const Auth = getAuth(App);
 
-export {app}
+export { App, Auth };
