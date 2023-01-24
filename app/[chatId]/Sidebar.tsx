@@ -2,7 +2,7 @@ import React from "react";
 
 function Sidebar() {
   return (
-    <div className="sidebar absolute left-0 top-0 bottom-0 hidden w-full flex-col border-r p-2 shadow-[5px_0_5px_-5px_rgba(0,0,0,0.1)] md:flex md:w-[37%] lg:w-[27%]">
+    <div className="sidebar absolute left-0 top-0 bottom-0 hidden w-full flex-col border-r bg-gray-200 p-2 shadow-[inset_-5px_0_5px_-5px_rgba(0,0,0,0.3)] md:flex md:w-[37%] lg:w-[27%]">
       <div className="search px-2 pb-6">
         <input
           type="text"
@@ -11,7 +11,7 @@ function Sidebar() {
         />
       </div>
       <div className="h-full overflow-auto px-3">
-        <div className="entry mb-4 flex transform cursor-pointer rounded bg-white p-3 shadow-md transition-transform duration-300 hover:scale-105">
+        <button className="entry mb-4 flex w-full transform cursor-pointer rounded bg-gray-100 p-3 shadow-md transition-transform duration-300 hover:scale-105">
           <div className="flex flex-row">
             <div className="relative h-12 w-12">
               <img
@@ -42,7 +42,7 @@ function Sidebar() {
               </small> */}
             </div>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   );
