@@ -18,8 +18,8 @@ function Footing() {
     <div className="absolute bottom-0 left-0 right-0">
       <div className="write flex rounded-lg bg-gray-200 px-2 shadow-[0_-5px_5px_-5px_rgba(0,0,0,0.3)]">
         <div className="flex-3 flex content-center items-center p-2 pr-0 text-center">
-          <button className="block text-center text-gray-400 hover:text-gray-800">
-            <BiWinkSmile className="h-8 w-8" />
+          <button className="block rounded-lg text-center text-gray-400 outline-none hover:text-gray-800 focus-visible:ring-2 focus-visible:ring-blue-500">
+            <BiWinkSmile className="h-7 w-7" />
           </button>
         </div>
         <div className="flex-1 p-2">
@@ -36,10 +36,8 @@ function Footing() {
         </div>
         <div className="flex-2 flex content-center items-center px-2">
           <div className="flex-1">
-            <button className="inline-block h-10 w-10 rounded-full bg-purple-500 hover:bg-purple-700">
-              <span className="inline-block align-text-bottom">
-                <TbSend className="h-6 w-6 text-gray-200" />
-              </span>
+            <button className="inline-block h-10 w-10 rounded-full bg-purple-500 outline-none hover:bg-purple-700 focus-visible:ring-2 focus-visible:ring-blue-500">
+              <TbSend className="inline-block h-6 w-6 align-text-bottom text-gray-200" />
             </button>
           </div>
         </div>

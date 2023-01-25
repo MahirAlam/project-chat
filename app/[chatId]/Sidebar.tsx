@@ -1,5 +1,6 @@
-import React from "react";
+import Link from "next/link";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { FaQuestion } from "react-icons/fa";
 import { Auth } from "../../firebase";
 
 function Sidebar() {
@@ -56,7 +57,7 @@ function Sidebar() {
               <p className="text-sm text-gray-500">Signed in as</p>
               <p className="text-sm font-medium text-gray-800">{user?.email}</p>
             </div>
-            <div className="mt-2 py-2 first:pt-0 last:pb-0">
+            <div className="mt-2 divide-y divide-gray-200 py-2 first:pt-0 last:pb-0">
               <div className="py-2 first:pt-0 last:pb-0">
                 <span className="block py-2 px-3 text-xs font-medium uppercase text-gray-400">
                   Settings
@@ -126,13 +127,20 @@ function Sidebar() {
                   </svg>
                   Team Account
                 </a> */}
-              </div>
-              {/* <div className="py-2 first:pt-0 last:pb-0">
-                <span className="block py-2 px-3 text-xs font-medium uppercase text-gray-400">
-                  Contacts
-                </span>
                 <a
-                  className="flex items-center gap-x-3.5 rounded-md py-2 px-3 text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500"
+                  className="flex items-center gap-x-3.5 rounded-md py-2 px-3 text-sm text-gray-800 outline-none hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-blue-500"
+                  href="#"
+                >
+                  <FaQuestion className="flex-none" />
+                  Coming Soon....
+                </a>
+              </div>
+              <div className="py-2 first:pt-0 last:pb-0">
+                {/* <span className="block py-2 px-3 text-xs font-medium uppercase text-gray-400">
+                  Contacts
+                </span> */}
+                <a
+                  className="flex items-center gap-x-3.5 rounded-md py-2 px-3 text-sm text-gray-800 outline-none hover:bg-gray-100 focus-visible:ring-2 focus-visible:ring-blue-500"
                   href="#"
                 >
                   <svg
@@ -147,7 +155,7 @@ function Sidebar() {
                   </svg>
                   Contact support
                 </a>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
@@ -160,7 +168,7 @@ function Sidebar() {
         />
       </div>
       <div className="h-full overflow-auto py-2 px-3">
-        <a
+        <Link
           href="./d"
           className="entry mb-4 flex w-full transform cursor-pointer rounded bg-gray-100 p-3 shadow-md outline-none transition-transform duration-300 hover:scale-105 focus-visible:ring-2 focus-visible:ring-blue-500"
         >
@@ -194,7 +202,7 @@ function Sidebar() {
               </small> */}
             </div>
           </div>
-        </a>
+        </Link>
       </div>
     </>
   );
