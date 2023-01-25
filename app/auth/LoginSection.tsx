@@ -161,7 +161,7 @@ function LoginSection() {
           Sign up with Google
         </button>
       </div>
-      <p className="mt-2 text-center text-sm text-base-1/70 dark:text-gray-400">
+      <p className="mt-2 text-center text-sm text-base-1/70">
         Already have an account?
         <a
           className="ml-1 rounded-sm font-medium text-purple-600 decoration-2 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
